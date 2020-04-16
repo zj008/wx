@@ -27,9 +27,9 @@ def wx():
         data = request.data
         data = parse.parse_xml(data.decode("utf8"))
         c = data.get("content")
-        if c.startswith("0"):
+        if "0" in c:
             return "毒鸡汤"
-        if c.startswith("1"):
+        if "1" in c:
             return "讲个段子"
 
         return "请输入h 获取帮助列表"
