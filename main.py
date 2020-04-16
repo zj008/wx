@@ -26,6 +26,8 @@ def wx():
     if request.method == "POST":
         data = request.data
         data = parse.parse_xml(data.decode("utf8"))
+        c = data.get("content")
+        print(c, type(c))
         if data.get("content") == 0:
             return "毒鸡汤"
         if data.get("content") == 1:
