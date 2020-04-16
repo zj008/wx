@@ -27,6 +27,7 @@ def wx():
         data = request.data
         data = parse.parse_xml(data.decode("utf8"))
         c = data.get("content")
+        print(c)
         if "0" in c:
             return "毒鸡汤"
         if "1" in c:
