@@ -24,12 +24,12 @@ def wx():
 
     if request.method == "POST":
         print(request.form)
-        print(request.form["ToUserName"])
-        print(request.form["FromUserName"])
-        print(request.form["CreateTime"])
-        print(request.form["MsgType"])
-        print(request.form["Content"])
-        print(request.form["MsgId"])
+        print(request.form.get("ToUserName"))
+        print(request.form.get("FromUserName"))
+        print(request.form.get("CreateTime"))
+        print(request.form.get("MsgType"))
+        print(request.form.get("Content"))
+        print(request.form.get("MsgId"))
         return ""
 
     signature = request.args.get("signature")
