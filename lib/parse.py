@@ -12,9 +12,8 @@ def parse_xml(s):
     data["create_time"] = xml_data.find("CreateTime").text
     data["from_user_name"] = xml_data.find("FromUserName").text
     data["to_user_name"] = xml_data.find("ToUserName").text
-    print(data)
     return data
 
 
 if __name__ == '__main__':
-    parse_xml(data)
+    pass
