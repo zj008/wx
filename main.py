@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import request
+from flask import request, jsonify
 from configparser import ConfigParser
 import logging
 from lib import hs
@@ -23,6 +23,8 @@ def hello_word():
 def wx():
 
     if request.method == "POST":
+        data = request.get_json()
+        print(data)
         print(request.form)
         print(request.form.get("ToUserName"))
         print(request.form.get("FromUserName"))
