@@ -23,6 +23,7 @@ def hello_word():
 def wx():
 
     if request.method == "POST":
+        print(request.data)
         data = request.get_json()
         print(data)
         print(request.form)
