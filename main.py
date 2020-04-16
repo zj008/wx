@@ -3,7 +3,7 @@ from flask import request, jsonify
 from configparser import ConfigParser
 import logging
 from lib import hs
-from lib import parse
+from lib import receive, reply
 
 import os
 
@@ -25,15 +25,18 @@ def hello_word():
 def wx():
     if request.method == "POST":
         data = request.data
-        data = parse.parse_xml(data.decode("utf8"))
-        c = data.get("content")
-        print(c)
-        if "0" in c:
-            return "毒鸡汤"
-        if "1" in c:
-            return "讲个段子"
+        data = data.decode()
+        rec = receive.parse_xml(data)
+        if isinstance(rec, receive.Msg) and rec.MsgType == "text":
+            toUser = rec.FromUserName
+            fromUser = rec.ToUserName
+            content = "text"
+            rep = reply.TestMsg(toUser, fromUser, content)
+            return rep
+        else:
+            print("暂时不处理")
+            return "success"
 
-        return "请输入h 获取帮助列表"
     else:
         return auth(request)
 
