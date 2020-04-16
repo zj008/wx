@@ -3,6 +3,8 @@ from flask import request
 from configparser import ConfigParser
 from lib import hs
 
+import os
+print(os.getcwd())
 cf = ConfigParser()
 cf.read("conf/conf")
 host = cf.get("host", "host")
