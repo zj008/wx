@@ -27,12 +27,12 @@ def wx():
         data = request.data
         data = parse.parse_xml(data.decode("utf8"))
         c = data.get("content")
-        print(c, type(c))
-        if data.get("content") == 0:
+        if c.startswith("0"):
             return "毒鸡汤"
-        if data.get("content") == 1:
-            return "讲段子"
-        return ""
+        if c.startswith("1"):
+            return "讲个段子"
+
+        return "请输入h 获取帮助列表"
     else:
         return auth(request)
 
