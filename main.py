@@ -32,7 +32,7 @@ def wx():
             fromUser = rec.ToUserName
             content = "text"
             rep = reply.TestMsg(toUser, fromUser, content)
-            return rep
+            return rep.send()
         else:
             print("暂时不处理")
             return "success"
