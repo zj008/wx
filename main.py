@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request
 from configparser import ConfigParser
+import logging
 from lib import hs
 
 import os
@@ -18,8 +19,13 @@ def hello_word():
     return "hello word"
 
 
-@app.route("/wx")
+@app.route("/wx", methods=["GET", "POST"])
 def wx():
+
+    if request.method == "POST":
+        print(request.form)
+        return ""
+
     signature = request.args.get("signature")
     timestamp = request.args.get("timestamp")
     nonce = request.args.get("nonce")
