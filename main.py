@@ -6,6 +6,7 @@ from lib import hs
 from lib import receive, reply
 import os
 from lib.get_token import Req
+import time
 
 
 print(os.getcwd())
@@ -63,5 +64,7 @@ def auth(req):
 
 
 if __name__ == '__main__':
-    Req.update_token()
+    while 1:
+        Req.update_token()
+        time.sleep(7000)
     # app.run(host=host, port=port)
