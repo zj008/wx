@@ -27,15 +27,22 @@ def wx():
         data = request.data
         data = data.decode()
         rec = receive.parse_xml(data)
-        if isinstance(rec, receive.Msg) and rec.MsgType == "text":
+        if isinstance(rec, receive.Msg):
             toUser = rec.FromUserName
             fromUser = rec.ToUserName
-            content = "text"
-            rep = reply.TestMsg(toUser, fromUser, content)
-            return rep.send()
+            if rec.MsgType == "text":
+                content = "text"
+                rep = reply.TestMsg(toUser, fromUser, content)
+                return rep.send()
+            elif rec.MsgType == "image":
+                mediaId = rec.MediaId
+                rep = reply.ImageMsg(toUser, fromUser, mediaId)
+                return rep.send()
+            else:
+                reply.Msg().send()
         else:
-            print("暂时不处理")
-            return "success"
+            print("暂不处理")
+            return reply.Msg().send()
 
     else:
         return auth(request)
