@@ -1,5 +1,6 @@
 import requests
 import json
+import datetime
 
 import os
 print(os.getcwd())
@@ -19,7 +20,7 @@ class Req():
             token = json.loads(ret.text)
             token["table"] = cls.table
             token["id"] = 1
-            token["updatetime"] = time.time()
+            token["updatetime"] = datetime.datetime.now().strftime("%Y-%m-%d %X")
             sql = Sql()
             sql.insert_or_update(token)
             sql.close()
