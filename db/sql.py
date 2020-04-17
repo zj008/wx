@@ -5,7 +5,7 @@ import logging
 
 path = os.getcwd()
 print(path, path.split("wx")[0])
-path = os.path.join(path.split("wx")[0], "wx/wx/conf/conf")
+path = os.path.join(path.split("wx")[0], "wx/conf/conf")
 print(path)
 cf = ConfigParser()
 cf.read(path)

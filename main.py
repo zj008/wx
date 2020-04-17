@@ -5,6 +5,7 @@ import logging
 from lib import hs
 from lib import receive, reply
 import os
+from lib.get_token import Req
 
 
 print(os.getcwd())
@@ -62,4 +63,5 @@ def auth(req):
 
 
 if __name__ == '__main__':
-    app.run(host=host, port=port)
+    Req.update_token()
+    # app.run(host=host, port=port)

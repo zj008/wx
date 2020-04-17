@@ -1,5 +1,9 @@
 import requests
 import json
+
+import os
+print(os.getcwd())
+
 from db.sql import Sql
 import time
 
