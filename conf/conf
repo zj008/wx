@@ -4,3 +4,10 @@ port = 80
 
 [args]
 token = abc
+
+[sql]
+host = 152.136.50.145
+port = 3306
+username = root
+password = 123
+database = wx

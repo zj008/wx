@@ -4,8 +4,8 @@ from configparser import ConfigParser
 import logging
 from lib import hs
 from lib import receive, reply
-
 import os
+
 
 print(os.getcwd())
 cf = ConfigParser()
@@ -43,7 +43,6 @@ def wx():
         else:
             print("暂不处理")
             return reply.Msg().send()
-
     else:
         return auth(request)
 
