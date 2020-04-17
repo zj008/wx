@@ -21,6 +21,7 @@ class Req():
             token["id"] = 1
             sql = Sql()
             sql.insert_or_update(token)
+            sql.close()
         return
 
     @classmethod
@@ -28,6 +29,7 @@ class Req():
         sql = Sql()
         sql.cursor.execute("select * from token where id = 1")
         ret = sql.cursor.fetchone()
+        sql.close()
         return ret
 
 
