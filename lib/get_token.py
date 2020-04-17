@@ -3,17 +3,15 @@ import json
 
 
 class Req():
-
     token = {}
 
-    @staticmethod
-    def update_token():
+    @classmethod
+    def update_token(cls):
         ret = requests.get(
             "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx963cab3f76c2a895&secret=607dee317bb50fab9196bb9c06cc3c1a")
-        print(ret.status_code)
-        if ret.status_code == 0:
-            Req.token = json.loads(ret.text)
-        return ret
+        if ret.status_code == 200:
+            cls.token = json.loads(ret.text)
+        return
 
     @classmethod
     def give_token(cls):
