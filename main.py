@@ -38,7 +38,7 @@ def wx():
                 return rep.send()
             elif rec.MsgType == "image":
                 mediaId = rec.MediaId
-                rep = reply.ImageMsg(toUser, fromUser, mediaId)
+                rep = reply.ImageMsg(toUser, fromUser, "-FEc69kpEGLEtWJDD69VUfgYDgoqsbhh9lmaPDsC0_Q-43qTMiKECpsFpw55p0wt")
                 return rep.send()
             else:
                 reply.Msg().send()
