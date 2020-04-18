@@ -1,5 +1,5 @@
 import xml.etree.cElementTree as ET
-
+import random
 
 def parse_xml(s):
     if len(s) == 0:
@@ -13,6 +13,18 @@ def parse_xml(s):
     data["from_user_name"] = xml_data.find("FromUserName").text
     data["to_user_name"] = xml_data.find("ToUserName").text
     return data
+
+
+def parse_sed_content(sql, text):
+    text = text.strip()
+    texts = [("未知错误",)]
+    if text.startswith("1"):
+        texts = sql.select("select text from texts where type = 'soup'")
+    elif text.startswith("2"):
+        texts = sql.select("select text from texts where type = 'confession'")
+    elif text.startswith("3"):
+        texts = sql.select("select text from texts where type = 'lidan'")
+    return random.choice(texts)[0]
 
 
 if __name__ == '__main__':

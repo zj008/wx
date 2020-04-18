@@ -22,6 +22,21 @@ class Sql(object):
         )
         self.cursor = self.db.cursor()
 
+    def save(self, data):
+        table = data.pop("table")
+        key = ", ".join(data.keys())
+        val = ", ".join(["%s"] * len(data.keys()))
+        t_val = tuple(list(data.values()))
+        sql = "insert into %s (%s) values (%s)" % (table, key, val)
+        print(sql)
+        try:
+            self.cursor.execute(sql, t_val)
+            self.db.commit()
+        except Exception as e:
+            logging.error(e)
+            return None
+        return True
+
     def insert_or_update(self, data):
         if self.isExists(data):
             print("exists")
@@ -75,6 +90,15 @@ class Sql(object):
             print(e)
             return False
         return True
+
+    def select(self, sql):
+        try:
+            self.cursor.execute(sql)
+            ret = self.cursor.fetchall()
+        except Exception as e:
+            print(e)
+            return
+        return ret
 
 
 if __name__ == '__main__':

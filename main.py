@@ -3,10 +3,11 @@ from flask import request, jsonify
 from configparser import ConfigParser
 import logging
 from lib import hs
-from lib import receive, reply
+from lib import receive, reply, parse
 import os
 from lib.get_token import Req
 import time
+from db.sql import Sql
 
 
 print(os.getcwd())
@@ -33,7 +34,8 @@ def wx():
             toUser = rec.FromUserName
             fromUser = rec.ToUserName
             if rec.MsgType == "text":
-                content = "text"
+                sql = Sql()
+                content = parse.parse_sed_content(sql, rec.Content)
                 rep = reply.TestMsg(toUser, fromUser, content)
                 return rep.send()
             elif rec.MsgType == "image":
@@ -65,3 +67,7 @@ def auth(req):
 
 if __name__ == '__main__':
     app.run(host=host, port=port)
+    # sql = Sql()
+    # ret = parse.parse_sed_content(sql, "3")
+    # print(ret)
+    # sql.close()
