@@ -14,16 +14,25 @@ def parse_xml(s):
     data["to_user_name"] = xml_data.find("ToUserName").text
     return data
 
+content = """
+请输入：
+    1 ： 获取一条毒鸡汤
+    2 ： 获取一条真情告白
+    3 ： 获取一条李诞经典语录
+或者发送图品来获取精美壁纸一张。
+ps : 壁纸为缩略图，想要获取高清原图请去4k高清网自行下载
+"""
 
 def parse_sed_content(sql, text):
     text = text.strip()
-    texts = [("未知错误",)]
+    texts = [(content,)]
     if text.startswith("1"):
         texts = sql.select("select text from texts where type = 'soup'")
     elif text.startswith("2"):
         texts = sql.select("select text from texts where type = 'confession'")
     elif text.startswith("3"):
         texts = sql.select("select text from texts where type = 'lidan'")
+
     return random.choice(texts)[0]
 
 
