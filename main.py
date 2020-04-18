@@ -64,7 +64,4 @@ def auth(req):
 
 
 if __name__ == '__main__':
-    while 1:
-        Req.update_token()
-        time.sleep(7000)
-    # app.run(host=host, port=port)
+    app.run(host=host, port=port)

@@ -1,12 +1,7 @@
 import requests
 import json
 import datetime
-
-import os
-print(os.getcwd())
-
 from db.sql import Sql
-import time
 
 
 class Req():
@@ -36,6 +31,4 @@ class Req():
 
 
 if __name__ == '__main__':
-    while 1:
-        Req.update_token()
-        time.sleep(3600)
+    pass
