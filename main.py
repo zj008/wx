@@ -35,12 +35,13 @@ def wx():
             fromUser = rec.ToUserName
             if rec.MsgType == "text":
                 sql = Sql()
-                content = parse.parse_sed_content(sql, rec.Content)
-                rep = reply.TestMsg(toUser, fromUser, content)
+                rep = parse.parse_sed_content(sql, reply, toUser, fromUser, rec.Content)
+                # rep = reply.TestMsg(toUser, fromUser, content)
                 return rep.send()
+                pass
             elif rec.MsgType == "image":
                 mediaId = rec.MediaId
-                rep = reply.ImageMsg(toUser, fromUser, "-FEc69kpEGLEtWJDD69VUfgYDgoqsbhh9lmaPDsC0_Q-43qTMiKECpsFpw55p0wt")
+                rep = reply.ImageMsg(toUser, fromUser, mediaId)
                 return rep.send()
             else:
                 reply.Msg().send()

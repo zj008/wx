@@ -5,6 +5,7 @@ import urllib2
 import poster.encode
 from poster.streaminghttp import register_openers
 import json
+import os
 
 
 class Media(object):
@@ -26,13 +27,20 @@ class Media(object):
         return data
 
 
-if __name__ == '__main__':
+def run(filePath):
     myMedia = Media()
-    accessToken = "32_4xm9tDoFt-U7v8gCuhil9145YrIpAhvFFU5HxxTCMk3V22vcFpv3ZZOQ4xV43N16xBg8_cOFXna3b9JD1Ccpi2w8aCGvIl4x26hd1gTAU19iKLe7zgw8OjxzV0RaNT23icEJvS7rcwWLu10tFEYeADAVUO"
-    filePath = "/Users/aibyte/Documents/code/python/wx/images/1.jpg"  # 请安实际填写
+    accessToken = "32_U53IjKxTtnZUhixO0SlwFSatJQDHGZoXRIsypDPvvTbOEfjGR4dWlEsDW2g8ljvztQuVvk4R7TLkrHukPs18C0UcEdPQNU1evOklhY1EWkD2wMGD48ixqPjboROzjcuQQAVB_Q_DFevFDRDkRVAiAEANRW"
+    # filePath = "/Users/aibyte/Documents/code/python/wx/images/1.jpg"  # 请安实际填写
     mediaType = "image"
     data = myMedia.upload(accessToken, filePath, mediaType)
     f = open("/Users/aibyte/Documents/code/python/wx/info/media.txt", "a")
     f.write(json.dumps(data))
     f.write("\n")
     f.close()
+
+if __name__ == '__main__':
+    base = "/Users/aibyte/Documents/code/python/wx/images"
+    dirs = os.listdir(base)
+    for f in dirs:
+        file = os.path.join(base, f)
+        run(file)

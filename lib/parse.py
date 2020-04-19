@@ -14,7 +14,7 @@ def parse_xml(s):
     data["to_user_name"] = xml_data.find("ToUserName").text
     return data
 
-content = """
+c = """
 请输入数字获取相应内容：
     1 ： 获取一条毒鸡汤
     2 ： 获取一条真情告白
@@ -23,17 +23,24 @@ content = """
 ps : 壁纸为缩略图，想要获取高清原图请去4k高清网自行下载
 """
 
-def parse_sed_content(sql, text):
+def parse_sed_content(sql, reply, toUser, fromUser, text):
     text = text.strip()
-    texts = [(content,)]
+    texts = [(c,)]
+    if text.startswith("4"):
+        ids = sql.select("select media_id from media")
+        media_id = random.choice(ids)[0]
+        rep = reply.ImageMsg(toUser, fromUser, media_id)
+        return rep
+
     if text.startswith("1"):
         texts = sql.select("select text from texts where type = 'soup'")
     elif text.startswith("2"):
         texts = sql.select("select text from texts where type = 'confession'")
     elif text.startswith("3"):
         texts = sql.select("select text from texts where type = 'lidan'")
-
-    return random.choice(texts)[0]
+    content = random.choice(texts)[0]
+    rep = reply.TestMsg(toUser, fromUser, content)
+    return rep
 
 
 if __name__ == '__main__':
